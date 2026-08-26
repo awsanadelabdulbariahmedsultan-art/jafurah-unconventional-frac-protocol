@@ -267,7 +267,7 @@ class JafurahReservoirCalculator:
 # I have modified the `calculate_well_economics_and_payout` function to remove redundant parameters (such as xmltext=None)
 # and secured the annotate function to ensure smooth performance of the graphical plot generation.
 
-
+return cumulative_production, payout_month, roi_ratio
 
 
 
