@@ -73,7 +73,7 @@ The repository includes a complete Python simulation engine implementing analyti
 
 ---
 
-### Final ¥ Updat Source Code (`jafurah_simulator.py`)
+### Final $ Updat Source Code (`jafurah_simulator.py`)
 
 
 ```python
@@ -1124,6 +1124,225 @@ This project is licensed under the **MIT License** - see the official repository
 
 
 
+---
+
+---
+
+### Final $ Updat Source Code (`jafurah_simulator.py`)
+
+
+```python
+# دالة مستقلة تماماً تقوم بوراثة الفئة وتضيف الحسابات والرسوم دون القلق من مسافات البادئة (Indentation)
+def run_economics_simulation(calculator_instance, initial_rate_bpd, decline_rate_nominal, 
+                             hyperbolic_b, well_cost_usd, oil_price_usd):
+    """Simulates 10-year Arps Hyperbolic Decline, models CAPEX payout timelines, and plots advanced engineering curves."""
+    months = np.arange(1, 121)  # 10-Year Simulation Profile (120 Months)
+    rates = []
+    cumulative_revenues = []
+    cumulative_production = 0.0
+    payout_month = -1
+    
+    for m in months:
+        t_days = m * 30.41
+        # Advanced Arps Hyperbolic Production Rate Equation
+        current_rate = initial_rate_bpd / ((1.0 + hyperbolic_b * decline_rate_nominal * t_days) ** (1.0 / hyperbolic_b))
+        rates.append(current_rate)
+        
+        monthly_production = current_rate * 30.41
+        cumulative_production += monthly_production
+        
+        cumulative_revenue = cumulative_production * oil_price_usd
+        cumulative_revenues.append(cumulative_revenue)
+        
+        if cumulative_revenue >= well_cost_usd and payout_month == -1:
+            payout_month = m
+            
+    roi_ratio = (cumulative_production * oil_price_usd) / well_cost_usd
+    well_cost_millions = well_cost_usd / 1e6
+    
+    # --- GENERATING THE ADVANCED PLOT GRAPHICS ---
+    fig, ax1 = plt.subplots(figsize=(11, 6))
+    
+    # Primary Axis (Y1): Production Decline Curve
+    color = '#1f77b4'
+    ax1.set_xlabel('Production Timeline (Months)', fontweight='bold', fontsize=11)
+    ax1.set_ylabel('Hydrocarbon Production Rate (BPD)', color=color, fontweight='bold', fontsize=11)
+    ax1.plot(months, rates, color=color, linewidth=2.5, label='Arps Hyperbolic Decline Curve')
+    ax1.tick_params(axis='y', labelcolor=color)
+    ax1.grid(True, linestyle='--', alpha=0.5)
+    
+    # Secondary Axis (Y2): Cumulative Economic Revenue
+    ax2 = ax1.twinx()
+    color = '#2ca02c'
+    ax2.set_ylabel('Cumulative Asset Revenue (Millions USD)', color=color, fontweight='bold', fontsize=11)
+    
+    # Convert total dollars into millions for standard financial plotting scales
+    revenues_in_millions = np.array(cumulative_revenues) / 1e6
+    ax2.plot(months, revenues_in_millions, color=color, linewidth=2.5, linestyle='--', label='Cumulative Revenue')
+    ax2.tick_params(axis='y', labelcolor=color)
+    
+    # ✅ Add structural annotation and marker at the exact breakeven milestone intersection
+    if payout_month != -1:
+        ax2.plot(payout_month, well_cost_millions, marker='o', color='purple', 
+                 markersize=10, label=f'CAPEX Payout ({payout_month} Months)')
+        
+        ax2.annotate(
+            f'Payout: Month {payout_month}', 
+            xy=(payout_month, well_cost_millions), 
+            xytext=(payout_month + 5, well_cost_millions * 0.85),
+            arrowprops=dict(facecolor='black', shrink=0.08, width=1, headwidth=6, headlength=6)
+        )
+        
+    # Unified legend combination for both twin axes
+    lines1, labels1 = ax1.get_legend_handles_labels()
+    lines2, labels2 = ax2.get_legend_handles_labels()
+    ax1.legend(lines1 + lines2, labels1 + labels2, loc='upper left')
+    
+    # 📌 Unified Architectural Layout Polish
+    plt.title(f'Jafurah Production Decline & CAPEX Payout Model\nEngineered by {calculator_instance.author_name}', 
+              fontweight='bold', fontsize=13, pad=15)
+    
+    fig.tight_layout()
+    
+    # 💾 Save generated layout into working asset directory
+    plt.savefig('payout_curve.png', dpi=300)
+    plt.close()
+    
+    print("[System Notification] Production decline graphic successfully generated and saved as 'payout_curve.png'.")
+    return cumulative_production, payout_month, roi_ratio
+
+# --- تشغيل البرنامج بشكل تسلسلي مريح للهواتف المحمولة ---
+calc = JafurahReservoirCalculator()
+calc.print_intellectual_property_header()
+
+cum_prod, payout, roi = run_economics_simulation(
+    calculator_instance=calc,
+    initial_rate_bpd=1200,      # Initial production rate
+    decline_rate_nominal=0.005, # Daily nominal decline rate
+    hyperbolic_b=0.7,           # Arps hyperbolic b-parameter
+    well_cost_usd=8500000,      # Well development cost ($8.5M)
+    oil_price_usd=75            # Base case oil price scenario
+)
+
+print(f"\n[Execution Summary] Payout Month: {payout} | ROI: {roi:.2f}x")
+
+
+
+# دالة مستقلة تماماً تقوم بوراثة الفئة وتضيف الحسابات والرسوم دون القلق من مسافات البادئة (Indentation)
+def run_economics_simulation(calculator_instance, initial_rate_bpd, decline_rate_nominal, 
+                             hyperbolic_b, well_cost_usd, oil_price_usd):
+    """Simulates 10-year Arps Hyperbolic Decline, models CAPEX payout timelines, and plots advanced engineering curves."""
+    months = np.arange(1, 121)  # 10-Year Simulation Profile (120 Months)
+    rates = []
+    cumulative_revenues = []
+    cumulative_production = 0.0
+    payout_month = -1
+    
+    for m in months:
+        t_days = m * 30.41
+        # Advanced Arps Hyperbolic Production Rate Equation
+        current_rate = initial_rate_bpd / ((1.0 + hyperbolic_b * decline_rate_nominal * t_days) ** (1.0 / hyperbolic_b))
+        rates.append(current_rate)
+        
+        monthly_production = current_rate * 30.41
+        cumulative_production += monthly_production
+        
+        cumulative_revenue = cumulative_production * oil_price_usd
+        cumulative_revenues.append(cumulative_revenue)
+        
+        if cumulative_revenue >= well_cost_usd and payout_month == -1:
+            payout_month = m
+            
+    roi_ratio = (cumulative_production * oil_price_usd) / well_cost_usd
+    well_cost_millions = well_cost_usd / 1e6
+    
+    # --- GENERATING THE ADVANCED PLOT GRAPHICS ---
+    fig, ax1 = plt.subplots(figsize=(11, 6))
+    
+    # Primary Axis (Y1): Production Decline Curve
+    color = '#1f77b4'
+    ax1.set_xlabel('Production Timeline (Months)', fontweight='bold', fontsize=11)
+    ax1.set_ylabel('Hydrocarbon Production Rate (BPD)', color=color, fontweight='bold', fontsize=11)
+    ax1.plot(months, rates, color=color, linewidth=2.5, label='Arps Hyperbolic Decline Curve')
+    ax1.tick_params(axis='y', labelcolor=color)
+    ax1.grid(True, linestyle='--', alpha=0.5)
+    
+    # Secondary Axis (Y2): Cumulative Economic Revenue
+    ax2 = ax1.twinx()
+    color = '#2ca02c'
+    ax2.set_ylabel('Cumulative Asset Revenue (Millions USD)', color=color, fontweight='bold', fontsize=11)
+    
+    # Convert total dollars into millions for standard financial plotting scales
+    revenues_in_millions = np.array(cumulative_revenues) / 1e6
+    ax2.plot(months, revenues_in_millions, color=color, linewidth=2.5, linestyle='--', label='Cumulative Revenue')
+    ax2.tick_params(axis='y', labelcolor=color)
+    
+    # ✅ Add structural annotation and marker at the exact breakeven milestone intersection
+    if payout_month != -1:
+        ax2.plot(payout_month, well_cost_millions, marker='o', color='purple', 
+                 markersize=10, label=f'CAPEX Payout ({payout_month} Months)')
+        
+        ax2.annotate(
+            f'Payout: Month {payout_month}', 
+            xy=(payout_month, well_cost_millions), 
+            xytext=(payout_month + 5, well_cost_millions * 0.85),
+            arrowprops=dict(facecolor='black', shrink=0.08, width=1, headwidth=6, headlength=6)
+        )
+        
+    # Unified legend combination for both twin axes
+    lines1, labels1 = ax1.get_legend_handles_labels()
+    lines2, labels2 = ax2.get_legend_handles_labels()
+    ax1.legend(lines1 + lines2, labels1 + labels2, loc='upper left')
+    
+    # 📌 Unified Architectural Layout Polish
+    plt.title(f'Jafurah Production Decline & CAPEX Payout Model\nEngineered by {calculator_instance.author_name}', 
+              fontweight='bold', fontsize=13, pad=15)
+    
+    fig.tight_layout()
+    
+    # 💾 Save generated layout into working asset directory
+    plt.savefig('payout_curve.png', dpi=300)
+    plt.close()
+    
+    print("[System Notification] Production decline graphic successfully generated and saved as 'payout_curve.png'.")
+    return cumulative_production, payout_month, roi_ratio
+
+# --- تشغيل البرنامج بشكل تسلسلي مريح للهواتف المحمولة ---
+calc = JafurahReservoirCalculator()
+calc.print_intellectual_property_header()
+
+cum_prod, payout, roi = run_economics_simulation(
+    calculator_instance=calc,
+    initial_rate_bpd=1200,      # Initial production rate
+    decline_rate_nominal=0.005, # Daily nominal decline rate
+    hyperbolic_b=0.7,           # Arps hyperbolic b-parameter
+    well_cost_usd=8500000,      # Well development cost ($8.5M)
+    oil_price_usd=75            # Base case oil price scenario
+)
+
+print(f"\n[Execution Summary] Payout Month: {payout} | ROI: {roi:.2f}x")
+
+
+
+# استيراد أداة التحميل التلقائي الخاصة ببيئة Google Colab
+from google.colab import files
+
+# إعادة تشغيل المحاكاة وتوليد الرسم البياني الحديث
+calc = JafurahReservoirCalculator()
+cum_prod, payout, roi = run_economics_simulation(
+    calculator_instance=calc,
+    initial_rate_bpd=1200,      # معدل الإنتاج الأولي
+    decline_rate_nominal=0.005, # معدل الانخفاض اليومي
+    hyperbolic_b=0.7,           # معامل Arps الزائدي
+    well_cost_usd=8500000,      # تكلفة حفر وتطوير البئر ($8.5M)
+    oil_price_usd=75            # سعر البرميل الافتراضي
+)
+
+# أمر برميجي يقوم بتحميل ملف الصورة تلقائياً إلى جهازك فوراً
+files.download('payout_curve.png')
+
+
+```
 
 ---
 
