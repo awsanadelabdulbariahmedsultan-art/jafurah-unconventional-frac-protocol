@@ -73,6 +73,219 @@ The repository includes a complete Python simulation engine implementing analyti
 
 
 
+---
+
+### Final ¥ Updat Source Code (`jafurah_simulator.py`)
+
+
+```python
+# -*- coding: utf-8 -*-
+"""
+========================================================================================
+🔒 INTELLECTUAL PROPERTY & SOURCE CODE LICENSE DECLARATION
+========================================================================================
+Author:          Eng. Awsan Adel Abdulbari Ahmed Sultan
+Professional ID: 01010305468
+Location:        Yemen
+Contact Phone:   00967777852433
+Email:           awsan.sultan@gmail.com
+LinkedIn:        https://linkedin.com
+License:         MIT License - Copyright (c) 2026 Eng. Awsan Sultan. All Rights Reserved.
+========================================================================================
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+class JafurahReservoirCalculator:
+    def __init__(self):
+        self.author_name = "Eng. Awsan Adel Abdulbari Ahmed Sultan"
+        self.author_id = "01010305468"
+        self.country = "Yemen"
+        self.phone = "00967777852433"
+        self.email = "awsan.sultan@gmail.com"
+        
+    def print_intellectual_property_header(self):
+        header = f"""
+        ========================================================================
+        🔒 SYSTEM COMPLIANCE NOTICE: AI-DRIVEN RESERVOIR ENGINEERING KERNEL
+        ========================================================================
+        DEVELOPER & INTELLECTUAL PROPERTY OWNER:
+        Name:       {self.author_name}
+        Designation: Lead Digital Reservoir Engineer
+        ID Ref:     {self.author_id}
+        Origin:     {self.country}
+        Contact:    {self.phone} | {self.email}
+        
+        CORE ARCHITECTURE: Real-Time Frac Automation & Predictive Analytics
+        ========================================================================
+        """
+        print(header)
+
+    def calculate_volumetrics(self, lateral_length_meters, stage_spacing_meters):
+        """Utility #1: Calculates precise total sea water fluid and local sand proppant requirements."""
+        total_stages = int(lateral_length_meters / stage_spacing_meters)
+        water_per_stage_bbl = 9000.0
+        sand_per_stage_lbs = 350000.0
+        
+        total_water_bbl = total_stages * water_per_stage_bbl
+        total_sand_lbs = total_stages * sand_per_stage_lbs
+        total_sand_tons = total_sand_lbs / 2204.62
+        
+        return total_stages, total_water_bbl, total_sand_tons
+
+    def calculate_fracture_interference(self, well_spacing_meters, frac_half_length_meters):
+        """Utility #2: Evaluates geomechanical inter-well fracture overlap risks to prevent catastrophic Frac Hits."""
+        fracture_extension_total = frac_half_length_meters * 2
+        if fracture_extension_total > well_spacing_meters:
+            overlap_distance = fracture_extension_total - well_spacing_meters
+            overlap_ratio = (overlap_distance / well_spacing_meters) * 100
+            status = "CRITICAL WARNING: High Risk of Frac Hits / Severe Stress Overlap"
+        else:
+            overlap_distance = 0.0
+            overlap_ratio = 0.0
+            status = "OPTIMAL DESIGN: Dynamic Fracture Structural Integrity Maintained"
+            
+        return overlap_distance, overlap_ratio, status
+
+    def ai_predict_screenout_risk(self, live_pressure_psi, fluid_viscosity_cp, proppant_conc_ppa):
+        """Utility #3: Live AI slurry rheology evaluator analyzing continuous downhole data to predict screen-outs."""
+        critical_threshold = (live_pressure_psi * 0.12) + (fluid_viscosity_cp * 2.5)
+        risk_index = (proppant_conc_ppa * 45.0) / (critical_threshold + 1)
+        
+        if risk_index > 0.85:
+            action = "CRITICAL ALERT: Screen-out Imminent! AI Automated Loop: Reducing sand concentration by 40% and doubling FR dosing."
+            risk_status = "High Risk"
+        elif risk_index > 0.50:
+            action = "ADVISORY: Slurry flow showing unstable fluid dynamics. AI Loop: Increasing pump rate by 5 BPM to clear fractures."
+            risk_status = "Medium Risk"
+        else:
+            action = "SYSTEM OPTIMAL: Proppant transport and induced fracture propagation are perfectly stable."
+            risk_status = "Low Risk"
+            
+        return risk_index, risk_status, action
+
+    def optimize_walking_rig_path(self, total_wells_in_pad, distance_between_pads_km):
+        """Utility #4: Advanced matrix node mapping optimal multi-bench sequences for walking rigs to avoid stress shadowing."""
+        moving_time_hours = (distance_between_pads_km * 4.5) + (total_wells_in_pad * 1.2)
+        optimized_sequence = [f"Well-TMF-0{i}-Upper" if i % 2 == 0 else f"Well-Jubaila-0{i}-Lower" for i in range(1, total_wells_in_pad + 1)]
+        time_saved_days = (total_wells_in_pad * 1.8) - (moving_time_hours / 24.0)
+        
+        return optimized_sequence, time_saved_days
+
+    def ai_query_historical_lessons(self, target_depth_m, target_formation):
+        """Utility #5: Natural Language Processing textual data-miner resolving regional structural anomalies from exploration logs."""
+        database = {
+            "Tuwaiq Mountain Formation": "Lesson #104: High abrasive Chert bands detected at 3100m. Use PDC bits with diamond cutters to avoid bit wear.",
+            "Jubaila": "Lesson #208: Matrix formation contains active reactive clays. Maintain Clay Stabilizer at 2.0% in Slickwater to prevent pore plugging."
+        }
+        lesson = database.get(target_formation, "No critical historical anomalies recorded for this specific geological zone.")
+        
+        if target_depth_m > 3000:
+            recommendation = "AI Recommendation: Increase baseline production casing yield strength due to regional over-pressure trend."
+        else:
+            recommendation = "AI Recommendation: Wellbore casing stress profiles fall within standard safe margins."
+            
+        return lesson, recommendation
+
+# دالة مستقلة تماماً تقوم بوراثة الفئة وتضيف الحسابات والرسوم دون القلق من مسافات البادئة (Indentation)
+def run_economics_simulation(calculator_instance, initial_rate_bpd, decline_rate_nominal, 
+                             hyperbolic_b, well_cost_usd, oil_price_usd):
+    """Simulates 10-year Arps Hyperbolic Decline, models CAPEX payout timelines, and plots advanced engineering curves."""
+    months = np.arange(1, 121)  # 10-Year Simulation Profile (120 Months)
+    rates = []
+    cumulative_revenues = []
+    cumulative_production = 0.0
+    payout_month = -1
+    
+    for m in months:
+        t_days = m * 30.41
+        # Advanced Arps Hyperbolic Production Rate Equation
+        current_rate = initial_rate_bpd / ((1.0 + hyperbolic_b * decline_rate_nominal * t_days) ** (1.0 / hyperbolic_b))
+        rates.append(current_rate)
+        
+        monthly_production = current_rate * 30.41
+        cumulative_production += monthly_production
+        
+        cumulative_revenue = cumulative_production * oil_price_usd
+        cumulative_revenues.append(cumulative_revenue)
+        
+        if cumulative_revenue >= well_cost_usd and payout_month == -1:
+            payout_month = m
+            
+    roi_ratio = (cumulative_production * oil_price_usd) / well_cost_usd
+    well_cost_millions = well_cost_usd / 1e6
+    
+    # --- GENERATING THE ADVANCED PLOT GRAPHICS ---
+    fig, ax1 = plt.subplots(figsize=(11, 6))
+    
+    # Primary Axis (Y1): Production Decline Curve
+    color = '#1f77b4'
+    ax1.set_xlabel('Production Timeline (Months)', fontweight='bold', fontsize=11)
+    ax1.set_ylabel('Hydrocarbon Production Rate (BPD)', color=color, fontweight='bold', fontsize=11)
+    ax1.plot(months, rates, color=color, linewidth=2.5, label='Arps Hyperbolic Decline Curve')
+    ax1.tick_params(axis='y', labelcolor=color)
+    ax1.grid(True, linestyle='--', alpha=0.5)
+    
+    # Secondary Axis (Y2): Cumulative Economic Revenue
+    ax2 = ax1.twinx()
+    color = '#2ca02c'
+    ax2.set_ylabel('Cumulative Asset Revenue (Millions USD)', color=color, fontweight='bold', fontsize=11)
+    
+    # Convert total dollars into millions for standard financial plotting scales
+    revenues_in_millions = np.array(cumulative_revenues) / 1e6
+    ax2.plot(months, revenues_in_millions, color=color, linewidth=2.5, linestyle='--', label='Cumulative Revenue')
+    ax2.tick_params(axis='y', labelcolor=color)
+    
+    # ✅ Add structural annotation and marker at the exact breakeven milestone intersection
+    if payout_month != -1:
+        ax2.plot(payout_month, well_cost_millions, marker='o', color='purple', 
+                 markersize=10, label=f'CAPEX Payout ({payout_month} Months)')
+        
+        ax2.annotate(
+            f'Payout: Month {payout_month}', 
+            xy=(payout_month, well_cost_millions), 
+            xytext=(payout_month + 5, well_cost_millions * 0.85),
+            arrowprops=dict(facecolor='black', shrink=0.08, width=1, headwidth=6, headlength=6)
+        )
+        
+    # Unified legend combination for both twin axes
+    lines1, labels1 = ax1.get_legend_handles_labels()
+    lines2, labels2 = ax2.get_legend_handles_labels()
+    ax1.legend(lines1 + lines2, labels1 + labels2, loc='upper left')
+    
+    # 📌 Unified Architectural Layout Polish
+    plt.title(f'Jafurah Production Decline & CAPEX Payout Model\nEngineered by {calculator_instance.author_name}', 
+              fontweight='bold', fontsize=13, pad=15)
+    
+    fig.tight_layout()
+    
+    # 💾 Save generated layout into working asset directory
+    plt.savefig('payout_curve.png', dpi=300)
+    plt.close()
+    
+    print("[System Notification] Production decline graphic successfully generated and saved as 'payout_curve.png'.")
+    return cumulative_production, payout_month, roi_ratio
+
+# --- تشغيل البرنامج بشكل تسلسلي مريح للهواتف المحمولة ---
+calc = JafurahReservoirCalculator()
+calc.print_intellectual_property_header()
+
+cum_prod, payout, roi = run_economics_simulation(
+    calculator_instance=calc,
+    initial_rate_bpd=1200,      # Initial production rate
+    decline_rate_nominal=0.005, # Daily nominal decline rate
+    hyperbolic_b=0.7,           # Arps hyperbolic b-parameter
+    well_cost_usd=8500000,      # Well development cost ($8.5M)
+    oil_price_usd=75            # Base case oil price scenario
+)
+
+print(f"\n[Execution Summary] Payout Month: {payout} | ROI: {roi:.2f}x")
+
+
+
+
+```
 
 ---
 
@@ -696,7 +909,219 @@ This project is licensed under the **MIT License** - see the official repository
 
 
 
+---
 
+### Final ¥ Updat Source Code (`jafurah_simulator.py`)
+
+
+```python
+# -*- coding: utf-8 -*-
+"""
+========================================================================================
+🔒 INTELLECTUAL PROPERTY & SOURCE CODE LICENSE DECLARATION
+========================================================================================
+Author:          Eng. Awsan Adel Abdulbari Ahmed Sultan
+Professional ID: 01010305468
+Location:        Yemen
+Contact Phone:   00967777852433
+Email:           awsan.sultan@gmail.com
+LinkedIn:        https://linkedin.com
+License:         MIT License - Copyright (c) 2026 Eng. Awsan Sultan. All Rights Reserved.
+========================================================================================
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+class JafurahReservoirCalculator:
+    def __init__(self):
+        self.author_name = "Eng. Awsan Adel Abdulbari Ahmed Sultan"
+        self.author_id = "01010305468"
+        self.country = "Yemen"
+        self.phone = "00967777852433"
+        self.email = "awsan.sultan@gmail.com"
+        
+    def print_intellectual_property_header(self):
+        header = f"""
+        ========================================================================
+        🔒 SYSTEM COMPLIANCE NOTICE: AI-DRIVEN RESERVOIR ENGINEERING KERNEL
+        ========================================================================
+        DEVELOPER & INTELLECTUAL PROPERTY OWNER:
+        Name:       {self.author_name}
+        Designation: Lead Digital Reservoir Engineer
+        ID Ref:     {self.author_id}
+        Origin:     {self.country}
+        Contact:    {self.phone} | {self.email}
+        
+        CORE ARCHITECTURE: Real-Time Frac Automation & Predictive Analytics
+        ========================================================================
+        """
+        print(header)
+
+    def calculate_volumetrics(self, lateral_length_meters, stage_spacing_meters):
+        """Utility #1: Calculates precise total sea water fluid and local sand proppant requirements."""
+        total_stages = int(lateral_length_meters / stage_spacing_meters)
+        water_per_stage_bbl = 9000.0
+        sand_per_stage_lbs = 350000.0
+        
+        total_water_bbl = total_stages * water_per_stage_bbl
+        total_sand_lbs = total_stages * sand_per_stage_lbs
+        total_sand_tons = total_sand_lbs / 2204.62
+        
+        return total_stages, total_water_bbl, total_sand_tons
+
+    def calculate_fracture_interference(self, well_spacing_meters, frac_half_length_meters):
+        """Utility #2: Evaluates geomechanical inter-well fracture overlap risks to prevent catastrophic Frac Hits."""
+        fracture_extension_total = frac_half_length_meters * 2
+        if fracture_extension_total > well_spacing_meters:
+            overlap_distance = fracture_extension_total - well_spacing_meters
+            overlap_ratio = (overlap_distance / well_spacing_meters) * 100
+            status = "CRITICAL WARNING: High Risk of Frac Hits / Severe Stress Overlap"
+        else:
+            overlap_distance = 0.0
+            overlap_ratio = 0.0
+            status = "OPTIMAL DESIGN: Dynamic Fracture Structural Integrity Maintained"
+            
+        return overlap_distance, overlap_ratio, status
+
+    def ai_predict_screenout_risk(self, live_pressure_psi, fluid_viscosity_cp, proppant_conc_ppa):
+        """Utility #3: Live AI slurry rheology evaluator analyzing continuous downhole data to predict screen-outs."""
+        critical_threshold = (live_pressure_psi * 0.12) + (fluid_viscosity_cp * 2.5)
+        risk_index = (proppant_conc_ppa * 45.0) / (critical_threshold + 1)
+        
+        if risk_index > 0.85:
+            action = "CRITICAL ALERT: Screen-out Imminent! AI Automated Loop: Reducing sand concentration by 40% and doubling FR dosing."
+            risk_status = "High Risk"
+        elif risk_index > 0.50:
+            action = "ADVISORY: Slurry flow showing unstable fluid dynamics. AI Loop: Increasing pump rate by 5 BPM to clear fractures."
+            risk_status = "Medium Risk"
+        else:
+            action = "SYSTEM OPTIMAL: Proppant transport and induced fracture propagation are perfectly stable."
+            risk_status = "Low Risk"
+            
+        return risk_index, risk_status, action
+
+    def optimize_walking_rig_path(self, total_wells_in_pad, distance_between_pads_km):
+        """Utility #4: Advanced matrix node mapping optimal multi-bench sequences for walking rigs to avoid stress shadowing."""
+        moving_time_hours = (distance_between_pads_km * 4.5) + (total_wells_in_pad * 1.2)
+        optimized_sequence = [f"Well-TMF-0{i}-Upper" if i % 2 == 0 else f"Well-Jubaila-0{i}-Lower" for i in range(1, total_wells_in_pad + 1)]
+        time_saved_days = (total_wells_in_pad * 1.8) - (moving_time_hours / 24.0)
+        
+        return optimized_sequence, time_saved_days
+
+    def ai_query_historical_lessons(self, target_depth_m, target_formation):
+        """Utility #5: Natural Language Processing textual data-miner resolving regional structural anomalies from exploration logs."""
+        database = {
+            "Tuwaiq Mountain Formation": "Lesson #104: High abrasive Chert bands detected at 3100m. Use PDC bits with diamond cutters to avoid bit wear.",
+            "Jubaila": "Lesson #208: Matrix formation contains active reactive clays. Maintain Clay Stabilizer at 2.0% in Slickwater to prevent pore plugging."
+        }
+        lesson = database.get(target_formation, "No critical historical anomalies recorded for this specific geological zone.")
+        
+        if target_depth_m > 3000:
+            recommendation = "AI Recommendation: Increase baseline production casing yield strength due to regional over-pressure trend."
+        else:
+            recommendation = "AI Recommendation: Wellbore casing stress profiles fall within standard safe margins."
+            
+        return lesson, recommendation
+
+# دالة مستقلة تماماً تقوم بوراثة الفئة وتضيف الحسابات والرسوم دون القلق من مسافات البادئة (Indentation)
+def run_economics_simulation(calculator_instance, initial_rate_bpd, decline_rate_nominal, 
+                             hyperbolic_b, well_cost_usd, oil_price_usd):
+    """Simulates 10-year Arps Hyperbolic Decline, models CAPEX payout timelines, and plots advanced engineering curves."""
+    months = np.arange(1, 121)  # 10-Year Simulation Profile (120 Months)
+    rates = []
+    cumulative_revenues = []
+    cumulative_production = 0.0
+    payout_month = -1
+    
+    for m in months:
+        t_days = m * 30.41
+        # Advanced Arps Hyperbolic Production Rate Equation
+        current_rate = initial_rate_bpd / ((1.0 + hyperbolic_b * decline_rate_nominal * t_days) ** (1.0 / hyperbolic_b))
+        rates.append(current_rate)
+        
+        monthly_production = current_rate * 30.41
+        cumulative_production += monthly_production
+        
+        cumulative_revenue = cumulative_production * oil_price_usd
+        cumulative_revenues.append(cumulative_revenue)
+        
+        if cumulative_revenue >= well_cost_usd and payout_month == -1:
+            payout_month = m
+            
+    roi_ratio = (cumulative_production * oil_price_usd) / well_cost_usd
+    well_cost_millions = well_cost_usd / 1e6
+    
+    # --- GENERATING THE ADVANCED PLOT GRAPHICS ---
+    fig, ax1 = plt.subplots(figsize=(11, 6))
+    
+    # Primary Axis (Y1): Production Decline Curve
+    color = '#1f77b4'
+    ax1.set_xlabel('Production Timeline (Months)', fontweight='bold', fontsize=11)
+    ax1.set_ylabel('Hydrocarbon Production Rate (BPD)', color=color, fontweight='bold', fontsize=11)
+    ax1.plot(months, rates, color=color, linewidth=2.5, label='Arps Hyperbolic Decline Curve')
+    ax1.tick_params(axis='y', labelcolor=color)
+    ax1.grid(True, linestyle='--', alpha=0.5)
+    
+    # Secondary Axis (Y2): Cumulative Economic Revenue
+    ax2 = ax1.twinx()
+    color = '#2ca02c'
+    ax2.set_ylabel('Cumulative Asset Revenue (Millions USD)', color=color, fontweight='bold', fontsize=11)
+    
+    # Convert total dollars into millions for standard financial plotting scales
+    revenues_in_millions = np.array(cumulative_revenues) / 1e6
+    ax2.plot(months, revenues_in_millions, color=color, linewidth=2.5, linestyle='--', label='Cumulative Revenue')
+    ax2.tick_params(axis='y', labelcolor=color)
+    
+    # ✅ Add structural annotation and marker at the exact breakeven milestone intersection
+    if payout_month != -1:
+        ax2.plot(payout_month, well_cost_millions, marker='o', color='purple', 
+                 markersize=10, label=f'CAPEX Payout ({payout_month} Months)')
+        
+        ax2.annotate(
+            f'Payout: Month {payout_month}', 
+            xy=(payout_month, well_cost_millions), 
+            xytext=(payout_month + 5, well_cost_millions * 0.85),
+            arrowprops=dict(facecolor='black', shrink=0.08, width=1, headwidth=6, headlength=6)
+        )
+        
+    # Unified legend combination for both twin axes
+    lines1, labels1 = ax1.get_legend_handles_labels()
+    lines2, labels2 = ax2.get_legend_handles_labels()
+    ax1.legend(lines1 + lines2, labels1 + labels2, loc='upper left')
+    
+    # 📌 Unified Architectural Layout Polish
+    plt.title(f'Jafurah Production Decline & CAPEX Payout Model\nEngineered by {calculator_instance.author_name}', 
+              fontweight='bold', fontsize=13, pad=15)
+    
+    fig.tight_layout()
+    
+    # 💾 Save generated layout into working asset directory
+    plt.savefig('payout_curve.png', dpi=300)
+    plt.close()
+    
+    print("[System Notification] Production decline graphic successfully generated and saved as 'payout_curve.png'.")
+    return cumulative_production, payout_month, roi_ratio
+
+# --- تشغيل البرنامج بشكل تسلسلي مريح للهواتف المحمولة ---
+calc = JafurahReservoirCalculator()
+calc.print_intellectual_property_header()
+
+cum_prod, payout, roi = run_economics_simulation(
+    calculator_instance=calc,
+    initial_rate_bpd=1200,      # Initial production rate
+    decline_rate_nominal=0.005, # Daily nominal decline rate
+    hyperbolic_b=0.7,           # Arps hyperbolic b-parameter
+    well_cost_usd=8500000,      # Well development cost ($8.5M)
+    oil_price_usd=75            # Base case oil price scenario
+)
+
+print(f"\n[Execution Summary] Payout Month: {payout} | ROI: {roi:.2f}x")
+
+
+
+
+```
 
 
 ---
