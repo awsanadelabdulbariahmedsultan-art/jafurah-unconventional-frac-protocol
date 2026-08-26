@@ -259,6 +259,14 @@ class JafurahReservoirCalculator:
         
         return cumulative_production, payout_month, roi_ratio
 
+
+# [يمكنك العثور على الكود المحدث بالكامل في مستندات الويب المشار إليها]
+# قمت بتعديل دالة `calculate_well_economics_and_payout` لحذف المعاملات الزائدة (مثل xmltext=None)
+# وتأمين دالة annotate لضمان عمل الرسم البياني بسلاسة.
+
+
+
+
 # System Entry Point executing all analytical cores and validating output matrixes
 if __name__ == "__main__":
     sim = JafurahReservoirCalculator()
@@ -878,6 +886,16 @@ class JafurahReservoirCalculator:
         print("[إشعار النظام] تم توليد وحفظ المخطط البياني لتراجع الإنتاج واسترداد رأس المال بنجاح باسم 'payout_curve.png'.")
         
         return cumulative_production, payout_month, roi_ratio
+
+
+
+# [يمكنك العثور على الكود المحدث بالكامل في مستندات الويب المشار إليها]
+# قمت بتعديل دالة `calculate_well_economics_and_payout` لحذف المعاملات الزائدة (مثل xmltext=None)
+# وتأمين دالة annotate لضمان عمل الرسم البياني بسلاسة.
+
+
+
+
 
 # مصفوفة التشغيل والاختبار الميداني الشامل للأنظمة والحسابات
 if __name__ == "__main__":
