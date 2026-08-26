@@ -75,6 +75,15 @@ The repository includes a complete Python simulation engine implementing analyti
 
 ### Final $ Updat Source Code (`jafurah_simulator.py`)
 
+---
+
+
+<p align="center">
+  <img src="./payout_curve.png" alt="payout_curve.png" width="1254" heigh
+    t="1254"/>
+</p>
+---
+
 
 ```python
 # دالة مستقلة تماماً تقوم بوراثة الفئة وتضيف الحسابات والرسوم دون القلق من مسافات البادئة (Indentation)
@@ -289,6 +298,13 @@ files.download('payout_curve.png')
 
 ```
 
+---
+
+
+<p align="center">
+  <img src="./payout_curve.png" alt="payout_curve.png" width="1254" heigh
+    t="1254"/>
+</p>
 ---
 
 ### Final ¥ Updat Source Code (`jafurah_simulator.py`)
@@ -1130,6 +1146,16 @@ This project is licensed under the **MIT License** - see the official repository
 
 ### Final $ Updat Source Code (`jafurah_simulator.py`)
 
+---
+
+
+<p align="center">
+  <img src="./payout_curve.png" alt="payout_curve.png" width="1254" heigh
+    t="1254"/>
+</p>
+
+---
+
 
 ```python
 # دالة مستقلة تماماً تقوم بوراثة الفئة وتضيف الحسابات والرسوم دون القلق من مسافات البادئة (Indentation)
@@ -1343,6 +1369,16 @@ files.download('payout_curve.png')
 
 
 ```
+
+---
+
+
+<p align="center">
+  <img src="./payout_curve.png" alt="payout_curve.png" width="1254" heigh
+    t="1254"/>
+</p>
+
+---
 
 ---
 
