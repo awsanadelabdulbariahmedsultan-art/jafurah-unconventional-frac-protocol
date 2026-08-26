@@ -239,35 +239,47 @@ class JafurahReservoirCalculator:
         # Add Horizontal Baseline for Well CAPEX Cost
         well_cost_millions = well_cost_usd / 1e6
         ax2.axhline(y=well_cost_millions, color='r', linestyle='--', linewidth=1.5, label='Well CAPEX Barrier')
+        import matplotlib.pyplot as plt
+
+def calculate_well_economics_and_payout(self, payout_month, well_cost_millions, cumulative_production, roi_ratio):
+    """
+    Calculates well economics and cash flow while generating the CAPEX Payout visual curve.
+    """
+    # Initialize the figure and axes (Assuming this is defined within your class context)
+    fig, ax2 = plt.subplots(figsize=(10, 6))
+    
+    # Base curve plotting (Placeholder for your actual production data plot)
+    # ax2.plot(...) 
+
+    # ✅ Check if payout is achieved, then add the geometric indicator on the milestone intersection
+    if payout_month != -1:
+        # Plot the payout milestone point
+        ax2.plot(payout_month, well_cost_millions, marker='o', color='purple', 
+                 markersize=10, label=f'CAPEX Payout ({payout_month} Months)')
         
-        # If well achieved payout, add a geometric indicator on the intersection milestone
-        if payout_month != -1:
-            ax2.plot(payout_month, well_cost_millions, marker='o', color='purple', markersize=10, label=f'CAPEX Payout ({payout_month} Months)')
-            ax2.annotate(f'Payout: Month {payout_month}', xmltext=None,
-                         xy=(payout_month, well_cost_millions), 
-                         xytext=(payout_month + 5, well_cost_millions - (well_cost_millions * 0.15)),
-                         arrowprops=dict(facecolor='black', shrink=0.05, width=1, headwidth=6))
-        
-        # Unified Architectural Layout Polish
-        plt.title(f'Jafurah Production Decline & CAPEX Payout Model\nEngineered by {self.author_name}', fontweight='bold', fontsize=13, pad=15)
-        fig.tight_layout()
-        
-        # Save output image directly into working asset directory
-        plt.savefig('payout_curve.png', dpi=300)
-        plt.close()
-        print("[System Notification] Production decline graphic successfully generated and saved as 'payout_curve.png'.")
-        
-        return cumulative_production, payout_month, roi_ratio
-
-
-
-
-
-# [You can find the fully updated code inside the referenced web documents]
-# I have modified the `calculate_well_economics_and_payout` function to remove redundant parameters (such as xmltext=None)
-# and secured the annotate function to ensure smooth performance of the graphical plot generation.
-
-return cumulative_production, payout_month, roi_ratio
+        # Add the text annotation with a clean directional arrow (Fixed: removed xmltext)
+        ax2.annotate(
+            f'Payout: Month {payout_month}', 
+            xy=(payout_month, well_cost_millions), 
+            xytext=(payout_month + 3, well_cost_millions * 0.85), # Refactored offset to secure plot boundaries
+            arrowprops=dict(facecolor='black', shrink=0.08, width=1, headwidth=6, headlength=6)
+        )
+    
+    # 📌 Unified Architectural Layout Polish
+    plt.title(f'Jafurah Production Decline & CAPEX Payout Model\nEngineered by {self.author_name}', 
+              fontweight='bold', fontsize=13, pad=15)
+    
+    # Optimize layout padding dynamically
+    fig.tight_layout()
+    
+    # 💾 Save output image directly into working asset directory with high resolution
+    plt.savefig('payout_curve.png', dpi=300)
+    plt.close()
+    
+    # System Notification
+    print("[System Notification] Production decline graphic successfully generated and saved as 'payout_curve.png'.")
+    
+    return cumulative_production, payout_month, roi_ratio
 
 
 
@@ -877,28 +889,47 @@ class JafurahReservoirCalculator:
         ax2.axhline(y=well_cost_millions, color='r', linestyle='--', linewidth=1.5, label='Well CAPEX Barrier')
         
         # إذا حقق البئر استرداداً ماليًا، نضع علامة هندسية وسهم يشير لنقطة التقاطع الحيوية
-        if payout_month != -1:
-            ax2.plot(payout_month, well_cost_millions, marker='o', color='purple', markersize=10, label=f'CAPEX Payout ({payout_month} Months)')
-            ax2.annotate(f'CAPEX Payout: Month {payout_month}', xytext=(payout_month + 5, well_cost_millions - (well_cost_millions * 0.15)),
-                         xy=(payout_month, well_cost_millions),
-                         arrowprops=dict(facecolor='black', shrink=0.05, width=1, headwidth=6))
+       import matplotlib.pyplot as plt
+
+def calculate_well_economics_and_payout(self, payout_month, well_cost_millions, cumulative_production, roi_ratio):
+    """
+    حساب اقتصاديات البئر والتدفق المالي مع توليد المنحنى البياني للاسترداد الرأسمالي (CAPEX Payout).
+    """
+    # إنشاء الشكل والمحاور (يفترض أن هذا الجزء معرف مسبقاً في سياق الكود الخاص بك)
+    fig, ax2 = plt.subplots(figsize=(10, 6))
+    
+    # محاكاة رسم المنحنى الأساسي لتجنب أخطاء الطبقات البرمجية
+    # ax2.plot(...) 
+
+    # ✅ التحقق من تحقيق نقطة التعادل وإضافة المؤشر الهندسي على التقاطع
+    if payout_month != -1:
+        # رسم نقطة التقاطع (Payout Milestone)
+        ax2.plot(payout_month, well_cost_millions, marker='o', color='purple', 
+                 markersize=10, label=f'CAPEX Payout ({payout_month} Months)')
         
-        # التنسيق النهائي وتجميل الإطار وحفظ ملف الصورة هندسياً
-        plt.title(f'Jafurah Production Decline & CAPEX Payout Model\nEngineered by {self.author_name}', fontweight='bold', fontsize=13, pad=15)
-        fig.tight_layout()
-        
-        plt.savefig('payout_curve.png', dpi=300)
-        plt.close()
-        print("[إشعار النظام] تم توليد وحفظ المخطط البياني لتراجع الإنتاج واسترداد رأس المال بنجاح باسم 'payout_curve.png'.")
-        
-        return cumulative_production, payout_month, roi_ratio
-
-
-
-# [يمكنك العثور على الكود المحدث بالكامل في مستندات الويب المشار إليها]
-# قمت بتعديل دالة `calculate_well_economics_and_payout` لحذف المعاملات الزائدة (مثل xmltext=None)
-# وتأمين دالة annotate لضمان عمل الرسم البياني بسلاسة.
-
+        # إضافة التعليق النصي مع السهم التوضيحي (تم إزالة المعامل الخاطئ xmltext)
+        ax2.annotate(
+            f'Payout: Month {payout_month}', 
+            xy=(payout_month, well_cost_millions), 
+            xytext=(payout_month + 3, well_cost_millions * 0.85), # تعديل الإزاحة لضمان ظهور النص داخل النطاق
+            arrowprops=dict(facecolor='black', shrink=0.08, width=1, headwidth=6, headlength=6)
+        )
+    
+    # 📌 صقل وتوحيد التنسيق المعماري للمخطط البياني
+    plt.title(f'Jafurah Production Decline & CAPEX Payout Model\nEngineered by {self.author_name}', 
+              fontweight='bold', fontsize=13, pad=15)
+    
+    # تفعيل توازن العناصر داخل لوحة الرسم
+    fig.tight_layout()
+    
+    # 💾 حفظ الصورة الناتجة مباشرة في دليل العمل بجودة عالية
+    plt.savefig('payout_curve.png', dpi=300)
+    plt.close()
+    
+    # إشعار النظام المطور
+    print("[System Notification] Production decline graphic successfully generated and saved as 'payout_curve.png'.")
+    
+    return cumulative_production, payout_month, roi_ratio
 
 
 
