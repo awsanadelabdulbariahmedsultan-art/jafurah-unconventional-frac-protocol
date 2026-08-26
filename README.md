@@ -260,9 +260,15 @@ class JafurahReservoirCalculator:
         return cumulative_production, payout_month, roi_ratio
 
 
-# [يمكنك العثور على الكود المحدث بالكامل في مستندات الويب المشار إليها]
-# قمت بتعديل دالة `calculate_well_economics_and_payout` لحذف المعاملات الزائدة (مثل xmltext=None)
-# وتأمين دالة annotate لضمان عمل الرسم البياني بسلاسة.
+
+
+
+# [You can find the fully updated code inside the referenced web documents]
+# I have modified the `calculate_well_economics_and_payout` function to remove redundant parameters (such as xmltext=None)
+# and secured the annotate function to ensure smooth performance of the graphical plot generation.
+
+
+
 
 
 
